@@ -1,0 +1,54 @@
+﻿<div ng-controller="ConfigurationFiles.Editors.EditController as vm">
+
+  <umb-load-indicator ng-if="vm.page.loading"></umb-load-indicator>
+
+  <form name="contentForm"
+        ng-submit="vm.save()"
+        novalidate
+        val-form-manager>
+
+      <umb-editor-view ng-if="!vm.page.loading">
+          <div ng-if="vm.isWebConfig" class="alert alert-warning">
+              <localize key="configurationFiles_webConfigEditing">Warning: You are currently editing the Web.Config file. Any modifications may potentially break your website. When you save a back-up copy will be made, in case of an emergency.</localize>
+          </div>
+
+          <umb-editor-header name="vm.file.name"
+                             hide-alias="true"
+                             description="vm.file.virtualPath"
+                             menu="vm.page.menu"
+                             name-locked="true"
+                             description-locked="true"
+                             hide-icon="true"
+                             hide-actions-menu="true">
+          </umb-editor-header>
+
+          <umb-editor-container>
+
+              <div auto-scale="85"
+                   umb-ace-editor="vm.aceOption"
+                   model="vm.file.content">
+              </div>
+
+
+          </umb-editor-container>
+
+          <umb-editor-footer>
+
+              <umb-editor-footer-content-right>
+
+                  <umb-button type="submit"
+                              button-style="success"
+                              state="vm.page.saveButtonState"
+                              shortcut="ctrl+s"
+                              label="Save"
+                              label-key="buttons_save">
+                  </umb-button>
+
+              </umb-editor-footer-content-right>
+
+          </umb-editor-footer>
+
+      </umb-editor-view>
+  </form>
+
+</div>
