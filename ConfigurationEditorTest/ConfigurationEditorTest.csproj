@@ -268,6 +268,9 @@
     <Content Include="App_Plugins\ConfigurationFiles\backoffice\js\configurationFiles.resource.js" />
     <Content Include="App_Plugins\ConfigurationFiles\backoffice\js\edit.controller.js" />
     <Content Include="App_Plugins\ConfigurationFiles\lang\en-US.xml" />
+    <Content Include="App_Plugins\ConfigurationFiles\lib\ace-builds\src-min-noconflict\mode-xml.js" />
+    <Content Include="App_Plugins\ConfigurationFiles\lib\ace-builds\src-min-noconflict\snippets\xml.js" />
+    <Content Include="App_Plugins\ConfigurationFiles\lib\ace-builds\src-min-noconflict\worker-xml.js" />
     <Content Include="config\grid.editors.config.js" />
     <Content Include="config\Lang\cs-CZ.user.xml" />
     <Content Include="config\Lang\da-DK.user.xml" />

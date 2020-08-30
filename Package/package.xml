@@ -27,6 +27,21 @@
       <orgName>en-US.xml</orgName>
     </file>
     <file>
+      <guid>mode-xml.js</guid>
+      <orgPath>~/App_Plugins/ConfigurationFiles/lib/ace-builds/src-min-noconflict</orgPath>
+      <orgName>mode-xml.js</orgName>
+    </file>
+    <file>
+      <guid>worker-xml.js</guid>
+      <orgPath>~/App_Plugins/ConfigurationFiles/lib/ace-builds/src-min-noconflict</orgPath>
+      <orgName>worker-xml.js</orgName>
+    </file>
+    <file>
+      <guid>xml.js</guid>
+      <orgPath>~/App_Plugins/ConfigurationFiles/lib/ace-builds/src-min-noconflict/snippets</orgPath>
+      <orgName>xml.js</orgName>
+    </file>
+    <file>
       <guid>ConfigurationEditor.dll</guid>
       <orgPath>~/bin</orgPath>
       <orgName>ConfigurationEditor.dll</orgName>
@@ -35,7 +50,7 @@
   <info>
     <package>
       <name>Configuration Editor</name>
-      <version>0.1.0</version>
+      <version>0.1.2</version>
       <iconUrl></iconUrl>
       <license url="http://opensource.org/licenses/MIT">MIT License</license>
       <url>https://github.com/YourITGroup/ConfigurationEditor</url>

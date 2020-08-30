@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web;
 using Umbraco.Core;
@@ -33,7 +35,7 @@ namespace UmbracoConfigTree.Controllers
             for(int i = 0; i < nodes.Count; i++)
             {
                 var node = nodes[i];
-                if (!((node.Id.ToString().InvariantStartsWith("config") && node.HasChildren)|| node.Name.InvariantEndsWith(".config")))
+                if (!(IsAllowedDirectory(node) || IsAllowedFile(node.Name)))
                 {
                     removalList.Add(node);
                 }
@@ -45,6 +47,25 @@ namespace UmbracoConfigTree.Controllers
             }
 
             return nodes;
+        }
+
+        private bool IsAllowedDirectory(TreeNode node)
+        {
+            bool allowed = false;
+
+            if (node.Id.ToString().InvariantStartsWith("config") && node.HasChildren)
+            {
+                var path = HttpUtility.UrlDecode(node.Id.ToString());
+
+                // check if the directory contains allowed files or other directories.
+                allowed = FileSystem.GetFiles(path).Any(IsAllowedFile) || FileSystem.GetDirectories(path).Any();
+            }
+            return allowed;
+        }
+
+        private bool IsAllowedFile(string name)
+        {
+            return Extensions.Contains(name.Split(new[] { '.' }).Last());
         }
 
         protected override MenuItemCollection GetMenuForNode(string id, FormDataCollection queryStrings)

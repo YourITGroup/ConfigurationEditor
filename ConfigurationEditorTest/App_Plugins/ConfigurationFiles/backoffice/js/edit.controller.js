@@ -1,5 +1,5 @@
 ﻿(function () {
-    "use strict";
+    "use strict"
 
     function configurationFilesEditController($scope, $routeParams, configurationFilesResource, assetsService, notificationsService, overlayService, editorState, navigationService, appState, angularHelper, $timeout, contentEditingHelper, localizationService) {
 
@@ -7,7 +7,7 @@
 
         const treeName = "configurationFiles"
 
-        vm.header = {};
+        vm.header = {}
         vm.header.editorfor = "settings_configuration";
         vm.header.setPageTitle = true;
 
@@ -42,16 +42,16 @@
                             submitButtonStyle: "danger",
                             close: function () {
                                 vm.page.saveButtonState = "error";
-                                overlayService.close();
+                                overlayService.close()
                             },
                             submit: function () {
-                                performSave();
-                                overlayService.close();
+                                performSave()
+                                overlayService.close()
                             }
                         };
-                        overlayService.confirm(overlay);
+                        overlayService.confirm(overlay)
 
-                    });
+                    })
             } else {
                 performSave()
             }
@@ -68,36 +68,32 @@
             }).then(function (saved) {
 
                 localizationService.localizeMany(["speechBubbles_fileSavedHeader", "speechBubbles_fileSavedText"]).then(function (data) {
-                    var header = data[0];
-                    var message = data[1];
-                    notificationsService.success(header, message);
+                    notificationsService.success(data[0], data[1])
                 });
 
                 //check if the name changed, if so we need to redirect
                 if (vm.file.id !== saved.id) {
-                    contentEditingHelper.redirectToRenamedContent(saved.id);
+                    contentEditingHelper.redirectToRenamedContent(saved.id)
                 }
                 else {
                     vm.page.saveButtonState = "success";
-                    vm.file = saved;
+                    vm.file = saved
 
                     //sync state
-                    editorState.set(vm.file);
+                    editorState.set(vm.file)
 
                     // sync tree
                     navigationService.syncTree({ tree: treeName, path: vm.file.path, forceReload: true }).then(function (syncArgs) {
                         vm.page.menu.currentNode = syncArgs.node;
-                    });
+                    })
                 }
 
             }, function (err) {
 
-                vm.page.saveButtonState = "error";
+                vm.page.saveButtonState = "error"
 
                 localizationService.localizeMany(["speechBubbles_validationFailedHeader", "speechBubbles_validationFailedMessage"]).then(function (data) {
-                    var header = data[0];
-                    var message = data[1];
-                    notificationsService.error(header, message);
+                    notificationsService.error(data[0], data[1])
                 });
 
             });
@@ -110,32 +106,30 @@
             //we need to load this somewhere, for now its here.
             assetsService.loadCss("lib/ace-razor-mode/theme/razor_chrome.css");
 
-
-            //console.log($routeParams.id);
             configurationFilesResource.getFile($routeParams.id).then(
                 function (file) {
-                    ready(file, true);
-                });
+                    ready(file, true)
+                })
 
         }
 
         function ready(file, syncTree) {
 
-            vm.page.loading = false;
+            vm.page.loading = false
 
-            vm.file = file;
+            vm.file = file
             vm.isWebConfig = file.name.toLowerCase() === "web.config"
 
             vm.setDirty = function () {
-                setFormState("dirty");
+                setFormState("dirty")
             }
 
             //sync state
-            editorState.set(vm.file);
+            editorState.set(vm.file)
 
             if (syncTree) {
                 navigationService.syncTree({ tree: treeName, path: vm.file.path, forceReload: true }).then(function (syncArgs) {
-                    vm.page.menu.currentNode = syncArgs.node;
+                    vm.page.menu.currentNode = syncArgs.node
                 });
             }
 
@@ -143,12 +137,22 @@
             const ext = file.name.split('.').pop().toLowerCase()
 
             // TODO: Add in support for XML.
-            const mode = ext === "js" || ext === "json" ? "javascript" : "razor"
+            const mode = ext === "js" || ext === "json" ? "javascript" : "xml"
 
-            vm.aceOption = {
+            vm.aceOption = createAceOptions(mode)
+        }
+
+        function createAceOptions(mode) {
+            if (mode === 'xml') {
+                ace.config.setModuleUrl("ace/snippets/xml", '/App_Plugins/ConfigurationFiles/lib/ace-builds/src-min-noconflict/snippets/xml.js');
+                // this doesn't work:
+                //ace.config.setModuleUrl("ace/worker-xml", '/App_Plugins/ConfigurationFiles/lib/ace-builds/src-min-noconflict/worker-xml.js');
+            }
+            return {
                 mode: mode,
                 theme: "chrome",
                 showPrintMargin: false,
+                showGutter: true,
                 advanced: {
                     fontSize: '14px',
                     enableSnippets: true,
@@ -159,16 +163,16 @@
                     vm.editor = _editor;
 
                     //change on blur, focus
-                    vm.editor.on("blur", persistCurrentLocation);
-                    vm.editor.on("focus", persistCurrentLocation);
-                    vm.editor.on("change", changeAceEditor);
+                    vm.editor.on("blur", persistCurrentLocation)
+                    vm.editor.on("focus", persistCurrentLocation)
+                    vm.editor.on("change", changeAceEditor)
 
                     //Update the auto-complete method to use ctrl+alt+space
-                    _editor.commands.bindKey("ctrl-alt-space", "startAutocomplete");
+                    _editor.commands.bindKey("ctrl-alt-space", "startAutocomplete")
 
                     //Unassigns the keybinding (That was previously auto-complete)
                     //As conflicts with our own tree search shortcut
-                    _editor.commands.bindKey("ctrl-space", null);
+                    _editor.commands.bindKey("ctrl-space", null)
 
                     // TODO: Move all these keybinding config out into some helper/service
                     _editor.commands.addCommands([
@@ -180,63 +184,73 @@
                             exec: function () {
                                 //Toggle the show keyboard shortcuts overlay
                                 $scope.$apply(function () {
-                                    vm.showKeyboardShortcut = !vm.showKeyboardShortcut;
-                                });
+                                    vm.showKeyboardShortcut = !vm.showKeyboardShortcut
+                                })
                             },
                             readOnly: true
                         }
                     ]);
 
-                    // initial cursor placement
                     $timeout(function () {
-                        vm.editor.focus();
-                        persistCurrentLocation();
+                        // initial cursor placement
+                        vm.editor.focus()
+                        persistCurrentLocation()
                     });
 
-                    vm.editor.on("change", changeAceEditor);
+                    vm.editor.on("change", changeAceEditor)
                 }
-            };
-
+            }
         }
 
         function persistCurrentLocation() {
-            vm.currentPosition = vm.editor.getCursorPosition();
+            vm.currentPosition = vm.editor.getCursorPosition()
         }
 
         function changeAceEditor() {
-            setFormState("dirty");
+            setFormState("dirty")
         }
 
         function setFormState(state) {
 
             // get the current form
-            var currentForm = angularHelper.getCurrentForm($scope);
+            var currentForm = angularHelper.getCurrentForm($scope)
 
             // set state
             if (state === "dirty") {
-                currentForm.$setDirty();
+                currentForm.$setDirty()
             } else if (state === "pristine") {
-                currentForm.$setPristine();
+                currentForm.$setPristine()
             }
         }
 
         function setFormState(state) {
 
             // get the current form
-            var currentForm = angularHelper.getCurrentForm($scope);
+            var currentForm = angularHelper.getCurrentForm($scope)
 
             // set state
             if (state === "dirty") {
-                currentForm.$setDirty();
+                currentForm.$setDirty()
             } else if (state === "pristine") {
-                currentForm.$setPristine();
+                currentForm.$setPristine()
             }
         }
 
+        // force loading the xml mode before initialising.
+        assetsService.load([
+            'lib/ace-builds/src-min-noconflict/ace.js',
+            'lib/ace-builds/src-min-noconflict/ext-language_tools.js',
+            '/App_Plugins/ConfigurationFiles/lib/ace-builds/src-min-noconflict/mode-xml.js',
+        ], $scope).then(function () {
+            if (angular.isUndefined(window.ace)) {
+                throw new Error('ui-ace need ace to work... (o rly?)');
+            } else {
+                init()
+            }
+        })
 
-        init();
 
     }
 
-    angular.module("umbraco").controller("ConfigurationFiles.Editors.EditController", configurationFilesEditController);
-})();
+    angular.module("umbraco").controller("ConfigurationFiles.Editors.EditController", configurationFilesEditController)
+})()

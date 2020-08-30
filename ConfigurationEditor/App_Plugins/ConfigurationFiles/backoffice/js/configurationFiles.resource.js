@@ -1,5 +1,5 @@
 ﻿(function () {
-    "use strict";
+    "use strict"
 
     function configurationFilesResource(umbRequestHelper, $http) {
         return {
@@ -28,4 +28,4 @@
     angular.module("umbraco").factory("configurationFilesResource", configurationFilesResource)
 
 
-})();
+})()
