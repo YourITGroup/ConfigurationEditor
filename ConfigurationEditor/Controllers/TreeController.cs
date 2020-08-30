@@ -33,7 +33,7 @@ namespace UmbracoConfigTree.Controllers
             for(int i = 0; i < nodes.Count; i++)
             {
                 var node = nodes[i];
-                if (!(node.Id.ToString().InvariantStartsWith("config") || node.Name.InvariantEndsWith(".config")))
+                if (!((node.Id.ToString().InvariantStartsWith("config") && node.HasChildren)|| node.Name.InvariantEndsWith(".config")))
                 {
                     removalList.Add(node);
                 }

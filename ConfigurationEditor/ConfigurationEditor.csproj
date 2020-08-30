@@ -7,8 +7,8 @@
     <ProjectGuid>{AFB42F03-4FE1-4408-A657-DEAC889E4F1C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConfigurationFiles</RootNamespace>
-    <AssemblyName>ConfigurationFiles</AssemblyName>
+    <RootNamespace>ConfigurationEditor</RootNamespace>
+    <AssemblyName>ConfigurationEditor</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

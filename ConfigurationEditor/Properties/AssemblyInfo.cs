@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ConfigurationFiles")]
+[assembly: AssemblyTitle("ConfigurationEditor")]
 [assembly: AssemblyDescription("Umbraco 8 Configuration Editor")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Your IT Group Pty Ltd")]
-[assembly: AssemblyProduct("ConfigurationFiles")]
+[assembly: AssemblyProduct("ConfigurationEditor")]
 [assembly: AssemblyCopyright("Copyright © Your IT Group 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.1.0.0")]
-[assembly: AssemblyFileVersion("0.1.0.0")]
+[assembly: AssemblyVersion("0.1.1.0")]
+[assembly: AssemblyFileVersion("0.1.1.0")]

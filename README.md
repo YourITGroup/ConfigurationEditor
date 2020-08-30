@@ -13,5 +13,12 @@ Compiled against Umbraco 8.6.4
 
 ## Sample Web project:
 
-  * Uses SqlCe database - username is "**admin@admin.com**"; password is "**Password123**"
-  * Umbraco 8.6.4
+* Uses SqlCe database - username is "**admin@admin.com**"; password is "**Password123**"
+* Umbraco 8.6.4
+
+## RoadMap:
+
+### Release 0.1.1
+
+* [x] Remove empty folders
+* [ ] Import proper Ace Editor xml view instead of using Razor.
