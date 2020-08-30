@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<umbPackage>
+  <files>
+    <file>
+      <guid>package.manifest</guid>
+      <orgPath>~/App_Plugins/ConfigurationFiles</orgPath>
+      <orgName>package.manifest</orgName>
+    </file>
+    <file>
+      <guid>edit.html</guid>
+      <orgPath>~/App_Plugins/ConfigurationFiles/backoffice/configurationFiles</orgPath>
+      <orgName>edit.html</orgName>
+    </file>
+    <file>
+      <guid>configurationFiles.resource.js</guid>
+      <orgPath>~/App_Plugins/ConfigurationFiles/backoffice/js</orgPath>
+      <orgName>configurationFiles.resource.js</orgName>
+    </file>
+    <file>
+      <guid>edit.controller.js</guid>
+      <orgPath>~/App_Plugins/ConfigurationFiles/backoffice/js</orgPath>
+      <orgName>edit.controller.js</orgName>
+    </file>
+    <file>
+      <guid>en-US.xml</guid>
+      <orgPath>~/App_Plugins/ConfigurationFiles/lang</orgPath>
+      <orgName>en-US.xml</orgName>
+    </file>
+    <file>
+      <guid>ConfigurationEditor.dll</guid>
+      <orgPath>~/bin</orgPath>
+      <orgName>ConfigurationEditor.dll</orgName>
+    </file>
+  </files>
+  <info>
+    <package>
+      <name>Configuration Editor</name>
+      <version>0.1.0</version>
+      <iconUrl></iconUrl>
+      <license url="http://opensource.org/licenses/MIT">MIT License</license>
+      <url>https://github.com/YourITGroup/ConfigurationEditor</url>
+      <requirements type="Strict">
+        <major>8</major>
+        <minor>6</minor>
+        <patch>4</patch>
+      </requirements>
+    </package>
+    <author>
+      <name>Robert Foster</name>
+      <website>https://our.umbraco.com/members/robertjf/</website>
+    </author>
+    <contributors>
+      <contributor>Robert Foster</contributor>
+    </contributors>
+    <readme><![CDATA[Adds a Configuration Editor to the Settings section for Umbraco 8 with capability to edit all files in the /config directory plus the root Web.Config file.  The root Web.Config file will be backed up with a date-stamped extension on save.]]></readme>
+  </info>
+  <DocumentTypes />
+  <Templates />
+  <Stylesheets />
+  <Macros />
+  <DictionaryItems />
+  <Languages />
+  <DataTypes />
+  <Actions />
+</umbPackage>

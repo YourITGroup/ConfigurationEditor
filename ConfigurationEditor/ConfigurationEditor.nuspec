@@ -13,7 +13,7 @@
     </description>
     <summary>Adds a Configuration Editor to the Settings section for Umbraco 8.</summary>
     <copyright>Copyright 2020 Robert Foster</copyright>
-    <projectUrl>https://github.com/YourITGroup/umbMemberListView</projectUrl>
+    <projectUrl>https://github.com/YourITGroup/ConfigurationEditor</projectUrl>
     <language />
     <releaseNotes>
       <![CDATA[
