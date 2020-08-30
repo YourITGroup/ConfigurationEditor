@@ -18,7 +18,7 @@ Compiled against Umbraco 8.6.4
 
 ## RoadMap:
 
-### Release 0.1.1
+### Release 0.1.2
 
 * [x] Remove empty folders
-* [ ] Import proper Ace Editor xml view instead of using Razor.
+* [x] Import proper Ace Editor xml view instead of using Razor.
