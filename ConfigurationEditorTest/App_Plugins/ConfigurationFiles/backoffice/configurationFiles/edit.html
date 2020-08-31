@@ -8,9 +8,6 @@
         val-form-manager>
 
       <umb-editor-view ng-if="!vm.page.loading">
-          <div ng-if="vm.isWebConfig" class="alert alert-warning">
-              <localize key="configurationFiles_webConfigEditing">Warning: You are currently editing the Web.Config file. Any modifications may potentially break your website. When you save a back-up copy will be made, in case of an emergency.</localize>
-          </div>
 
           <umb-editor-header name="vm.file.name"
                              hide-alias="true"
@@ -23,6 +20,9 @@
           </umb-editor-header>
 
           <umb-editor-container>
+              <div ng-if="vm.isWebConfig" class="alert alert-warning">
+                  <localize key="configurationFiles_webConfigEditing">Warning: You are currently editing the Web.Config file. Any modifications may potentially break your website. When you save a back-up copy will be made, in case of an emergency.</localize>
+              </div>
 
               <div auto-scale="85"
                    umb-ace-editor="vm.aceOption"

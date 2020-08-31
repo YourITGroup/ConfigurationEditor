@@ -16,7 +16,11 @@ Compiled against Umbraco 8.6.4
 * Uses SqlCe database - username is "**admin@admin.com**"; password is "**Password123**"
 * Umbraco 8.6.4
 
-## RoadMap:
+## RoadMap / Releases:
+
+### Release 0.1.3
+
+* [x] Moved alert banner for Web.config so it doesn't overlap the actual editing area obscuring it.
 
 ### Release 0.1.2
 
