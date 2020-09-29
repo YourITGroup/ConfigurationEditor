@@ -1,6 +1,6 @@
 ﻿# Configuration Editor
 
-![Configuration Editor Logo](https://raw.githubusercontent.com/YourITGroup/ConfigurationEditor/master/assets/Configuration_logo.png)
+![Configuration Editor Logo](https://raw.githubusercontent.com/YourITGroup/ConfigurationEditor/master/assets/ConfigurationManager_logo.png)
 
 Nuget Package: 
 [![NuGet release](https://img.shields.io/nuget/v/ConfigurationEditor.svg)](https://www.nuget.org/packages/ConfigurationEditor/)

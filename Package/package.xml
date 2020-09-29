@@ -51,7 +51,7 @@
     <package>
       <name>Configuration Editor</name>
       <version>0.1.4</version>
-      <iconUrl>https://raw.githubusercontent.com/YourITGroup/ConfigurationEditor/master/assets/Configuration_logo.png</iconUrl>
+      <iconUrl>https://raw.githubusercontent.com/YourITGroup/ConfigurationEditor/master/assets/ConfigurationManager_logo.png</iconUrl>
       <license url="http://opensource.org/licenses/MIT">MIT License</license>
       <url>https://github.com/YourITGroup/ConfigurationEditor</url>
       <requirements type="Strict">
