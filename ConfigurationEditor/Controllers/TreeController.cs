@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web;
@@ -22,7 +21,7 @@ namespace UmbracoConfigTree.Controllers
     public class TreeController : FileSystemTreeController
     {
         protected override IFileSystem FileSystem => new PhysicalFileSystem("~/");
-        private static readonly string[] ExtensionsStatic = { "config", "json", "xml", "js"  };
+        private static readonly string[] ExtensionsStatic = { "config", "json", "xml", "js" };
 
         protected override string[] Extensions => ExtensionsStatic;
 
@@ -32,7 +31,7 @@ namespace UmbracoConfigTree.Controllers
         {
             var nodes = base.GetTreeNodes(id, queryStrings);
             var removalList = new List<TreeNode>();
-            for(int i = 0; i < nodes.Count; i++)
+            for (int i = 0; i < nodes.Count; i++)
             {
                 var node = nodes[i];
                 if (!(IsAllowedDirectory(node) || IsAllowedFile(node.Name)))
@@ -41,7 +40,7 @@ namespace UmbracoConfigTree.Controllers
                 }
             }
 
-            foreach(var node in removalList)
+            foreach (var node in removalList)
             {
                 nodes.Remove(node);
             }

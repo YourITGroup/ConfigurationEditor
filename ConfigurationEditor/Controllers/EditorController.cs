@@ -34,7 +34,7 @@ namespace UmbracoConfigTree.Controllers
 
         public EditorController(IGlobalSettings globalSettings, IUmbracoContextAccessor umbracoContextAccessor,
                                 ISqlContext sqlContext, ServiceContext services, AppCaches appCaches,
-                                IProfilingLogger logger, IRuntimeState runtimeState, UmbracoHelper umbracoHelper) : 
+                                IProfilingLogger logger, IRuntimeState runtimeState, UmbracoHelper umbracoHelper) :
             base(globalSettings, umbracoContextAccessor, sqlContext, services, appCaches, logger, runtimeState, umbracoHelper)
         {
         }
@@ -78,8 +78,8 @@ namespace UmbracoConfigTree.Controllers
                 _fileSystem.CopyFile(file.VirtualPath, $"{file.VirtualPath}.{DateTime.Now:yyyyMMdd-HHmmss}");
             }
 
-//            file.VirtualPath = file.VirtualPath.EnsureCorrectFileExtension(configFileExtension);
-//            file.Name = file.Name.EnsureCorrectFileExtension(configFileExtension);
+            //            file.VirtualPath = file.VirtualPath.EnsureCorrectFileExtension(configFileExtension);
+            //            file.Name = file.Name.EnsureCorrectFileExtension(configFileExtension);
 
             //if (!Path.GetFileNameWithoutExtension(file.VirtualPath).InvariantEquals(Path.GetFileNameWithoutExtension(file.Name)))
             //{

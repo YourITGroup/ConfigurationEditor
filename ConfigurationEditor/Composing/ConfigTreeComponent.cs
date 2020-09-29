@@ -35,7 +35,7 @@ namespace UmbracoConfigTree.Composing
         {
             if (HttpContext.Current == null)
                 throw new InvalidOperationException("HttpContext is null");
-            
+
             UrlHelper urlHelper = new UrlHelper(new RequestContext(new HttpContextWrapper(HttpContext.Current), new RouteData()));
 
             string configurationFilesEditorsBaseUrl = urlHelper.GetUmbracoApiServiceBaseUrl<EditorController>(controller => controller.GetFile(null));

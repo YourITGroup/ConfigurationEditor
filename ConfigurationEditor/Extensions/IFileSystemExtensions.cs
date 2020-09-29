@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -53,7 +52,7 @@ namespace UmbracoConfigTree.Extensions
                 return codeFileDisplay;
             }
         }
-        
+
         /// <summary>
         /// Ensures the provided filename has the provided extension
         /// </summary>
