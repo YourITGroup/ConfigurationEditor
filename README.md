@@ -20,7 +20,7 @@ Compiled against Umbraco 8.6.4
 
 ## RoadMap / Releases:
 
-### Releaset 0.1.4
+### Release 0.1.4
 
 * [x] New Logo 💯
 
