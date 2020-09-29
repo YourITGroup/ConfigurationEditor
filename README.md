@@ -1,5 +1,7 @@
 ﻿# Configuration Editor
 
+![Configuration Editor Logo](https://raw.githubusercontent.com/YourITGroup/ConfigurationEditor/master/assets/Configuration_logo.png)
+
 Nuget Package: 
 [![NuGet release](https://img.shields.io/nuget/v/ConfigurationEditor.svg)](https://www.nuget.org/packages/ConfigurationEditor/)
 [![NuGet release](https://img.shields.io/nuget/dt/ConfigurationEditor.svg)](https://www.nuget.org/packages/ConfigurationEditor/)
@@ -17,6 +19,10 @@ Compiled against Umbraco 8.6.4
 * Umbraco 8.6.4
 
 ## RoadMap / Releases:
+
+### Releaset 0.1.4
+
+* [x] New Logo 💯
 
 ### Release 0.1.3
 

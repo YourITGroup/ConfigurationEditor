@@ -284,11 +284,11 @@ del *.nupkg</PreBuildEvent>
   Echo Creating Package Zip File...
   FOR /F "delims= usebackq" %25%25i IN (`powershell.exe -noninteractive -command "[System.Diagnostics.FileVersionInfo]::GetVersionInfo('$(TargetPath)').FileVersion"`) DO (
     ECHO version: %25%25i
-    if exist '$(SolutionDir)ConfigurationEditor.new.zip' (del '$(SolutionDir)ConfigurationEditor.%25%25i.zip')
+    if exist '$(SolutionDir)ConfigurationEditor.%25%25i.zip' (del '$(SolutionDir)ConfigurationEditor.%25%25i.zip')
     powershell Compress-Archive -Path '$(SolutionDir)Package\*.*' -DestinationPath '$(SolutionDir)ConfigurationEditor.%25%25i.zip' -Force
 )
 ) else (
-  echo Skipping NuGet Package.
+  echo Skipping Package creation.
 )</PostBuildEvent>
   </PropertyGroup>
 </Project>
