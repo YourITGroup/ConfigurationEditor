@@ -32,3 +32,6 @@ Compiled against Umbraco 8.6.4
 
 * [x] Remove empty folders
 * [x] Import proper Ace Editor xml view instead of using Razor.
+
+## Logo
+The package logo uses the Configuration (by Joe Pictos) icon from the Noun Project, licensed under CC BY 3.0 US.
