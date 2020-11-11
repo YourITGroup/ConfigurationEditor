@@ -21,7 +21,8 @@ namespace UmbracoConfigTree.Controllers
     public class TreeController : FileSystemTreeController
     {
         protected override IFileSystem FileSystem => new PhysicalFileSystem("~/");
-        private static readonly string[] ExtensionsStatic = { "config", "json", "xml", "js" };
+        private static readonly string[] ExtensionsStatic = { "config", "json", "xml" };
+        private static readonly string[] ConfigDirExtensionsStatic = { "config", "json", "xml", "js" };
 
         protected override string[] Extensions => ExtensionsStatic;
 
@@ -34,7 +35,7 @@ namespace UmbracoConfigTree.Controllers
             for (int i = 0; i < nodes.Count; i++)
             {
                 var node = nodes[i];
-                if (!(IsAllowedDirectory(node) || IsAllowedFile(node.Name)))
+                if (!(IsAllowedDirectory(node, queryStrings) || IsAllowedFile(node.Name)))
                 {
                     removalList.Add(node);
                 }
@@ -48,23 +49,47 @@ namespace UmbracoConfigTree.Controllers
             return nodes;
         }
 
-        private bool IsAllowedDirectory(TreeNode node)
+        private bool IsAllowedDirectory(TreeNode node, FormDataCollection queryStrings)
         {
             bool allowed = false;
+            var nodeId = node.Id.ToString();
+            var path = HttpUtility.UrlDecode(nodeId);
 
-            if (node.Id.ToString().InvariantStartsWith("config") && node.HasChildren)
+            // Default config directory test.
+            if (nodeId.InvariantStartsWith("config") && node.HasChildren)
             {
-                var path = HttpUtility.UrlDecode(node.Id.ToString());
-
                 // check if the directory contains allowed files or other directories.
                 allowed = FileSystem.GetFiles(path).Any(IsAllowedFile) || FileSystem.GetDirectories(path).Any();
             }
+
+            if (!allowed && nodeId.InvariantStartsWith("views"))
+            {
+                allowed = FileSystem.GetFiles(path).Any(IsAllowedFile);
+            }
+
+            // Test for Umbraco Forms config file - found in /App_Plugins/UmbracoForms/
+            if (!allowed)
+            {
+                if (path.InvariantEquals("app_plugins"))
+                {
+                    allowed = FileSystem.GetDirectories(path).Any();
+
+                }
+                else if (path.InvariantStartsWith("app_plugins") && node.HasChildren)
+                {
+                    allowed = FileSystem.GetFiles(path).Any(IsAllowedFile) || FileSystem.GetDirectories(path).Any();
+                }
+            }
+
+            allowed &= GetTreeNodes(path, queryStrings).Any();
+
             return allowed;
         }
 
         private bool IsAllowedFile(string name)
         {
-            return Extensions.Contains(name.Split(new[] { '.' }).Last());
+            var extensionList = name.InvariantStartsWith("config") ? ConfigDirExtensionsStatic : ExtensionsStatic;
+            return extensionList.Contains(name.Split(new[] { '.' }).Last());
         }
 
         protected override MenuItemCollection GetMenuForNode(string id, FormDataCollection queryStrings)

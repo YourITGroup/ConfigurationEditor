@@ -20,6 +20,10 @@ Compiled against Umbraco 8.6.4
 
 ## RoadMap / Releases:
 
+### Release 0.1.5
+
+* [x] Expanded configuration filters to include all configuration files under App_Plugins (json, xml, config)
+
 ### Release 0.1.4
 
 * [x] New Logo 💯
