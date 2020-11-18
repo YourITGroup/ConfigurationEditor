@@ -19,7 +19,6 @@
       <![CDATA[
 Installing the package adds a Configuration Editor to the Settings section for Umbraco 8 with capability to edit all files in the /config directory plus the root Web.Config file.  
 The root Web.Config file will be backed up with a date-stamped extension on save.
-
       ]]>
     </releaseNotes>
     <iconUrl>https://youritteam.blob.core.windows.net/assets/youritteam_64.png</iconUrl>

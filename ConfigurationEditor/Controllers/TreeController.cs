@@ -24,18 +24,23 @@ namespace UmbracoConfigTree.Controllers
         private static readonly string[] ExtensionsStatic = { "config", "json", "xml" };
         private static readonly string[] ConfigDirExtensionsStatic = { "config", "json", "xml", "js" };
 
-        protected override string[] Extensions => ExtensionsStatic;
+        protected override string[] Extensions => ConfigDirExtensionsStatic;
 
         protected override string FileIcon => "icon-tools";
 
         protected override TreeNodeCollection GetTreeNodes(string id, FormDataCollection queryStrings)
         {
             var nodes = base.GetTreeNodes(id, queryStrings);
+            if (!nodes.Any())
+            {
+                return nodes;
+            }
+
             var removalList = new List<TreeNode>();
             for (int i = 0; i < nodes.Count; i++)
             {
                 var node = nodes[i];
-                if (!(IsAllowedDirectory(node, queryStrings) || IsAllowedFile(node.Name)))
+                if (!(IsAllowedDirectory(node, queryStrings, id == "-1") || IsAllowedFile(node.Name, id.InvariantStartsWith("config"))))
                 {
                     removalList.Add(node);
                 }
@@ -49,7 +54,7 @@ namespace UmbracoConfigTree.Controllers
             return nodes;
         }
 
-        private bool IsAllowedDirectory(TreeNode node, FormDataCollection queryStrings)
+        private bool IsAllowedDirectory(TreeNode node, FormDataCollection queryStrings, bool isRootNode)
         {
             bool allowed = false;
             var nodeId = node.Id.ToString();
@@ -59,12 +64,12 @@ namespace UmbracoConfigTree.Controllers
             if (nodeId.InvariantStartsWith("config") && node.HasChildren)
             {
                 // check if the directory contains allowed files or other directories.
-                allowed = FileSystem.GetFiles(path).Any(IsAllowedFile) || FileSystem.GetDirectories(path).Any();
+                allowed = FileSystem.GetFiles(path).Any(n => IsAllowedFile(n, true)) || FileSystem.GetDirectories(path).Any();
             }
 
             if (!allowed && nodeId.InvariantStartsWith("views"))
             {
-                allowed = FileSystem.GetFiles(path).Any(IsAllowedFile);
+                allowed = FileSystem.GetFiles(path).Any(n => IsAllowedFile(n));
             }
 
             // Test for Umbraco Forms config file - found in /App_Plugins/UmbracoForms/
@@ -77,18 +82,20 @@ namespace UmbracoConfigTree.Controllers
                 }
                 else if (path.InvariantStartsWith("app_plugins") && node.HasChildren)
                 {
-                    allowed = FileSystem.GetFiles(path).Any(IsAllowedFile) || FileSystem.GetDirectories(path).Any();
+                    allowed = FileSystem.GetFiles(path).Any(n => IsAllowedFile(n)) || FileSystem.GetDirectories(path).Any();
                 }
             }
 
-            allowed &= GetTreeNodes(path, queryStrings).Any();
-
+            if (!isRootNode)
+            {
+                allowed &= GetTreeNodes(path, queryStrings).Any();
+            }
             return allowed;
         }
 
-        private bool IsAllowedFile(string name)
+        private bool IsAllowedFile(string name, bool isConfigDirectory = false)
         {
-            var extensionList = name.InvariantStartsWith("config") ? ConfigDirExtensionsStatic : ExtensionsStatic;
+            var extensionList = isConfigDirectory ? ConfigDirExtensionsStatic : ExtensionsStatic;
             return extensionList.Contains(name.Split(new[] { '.' }).Last());
         }
 
@@ -122,6 +129,7 @@ namespace UmbracoConfigTree.Controllers
             menu.Items.Add(new RefreshNode(Services.TextService, true));
             return menu;
         }
+
         protected override MenuItemCollection GetMenuForRootNode(FormDataCollection queryStrings)
         {
             var menu = new MenuItemCollection();
