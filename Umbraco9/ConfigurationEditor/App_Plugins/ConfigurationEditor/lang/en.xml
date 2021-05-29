@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language alias="en" intName="English (UK)" localName="English (UK)" lcid="" culture="en-GB">
+  <creator>
+    <name>Your IT Team</name>
+    <link>https://youritteam.com.au</link>
+  </creator>
+  <area alias="treeHeaders">
+    <key alias="configurationEditor">Configuration Files</key>
+  </area>
+  <area alias="settings">
+    <key alias="configuration">Configuration</key>
+  </area>
+  <area alias="configurationEditor">
+    <key alias="save">Save Configuration File</key>
+    <key alias="webConfigEditing">Warning: You are currently editing the appsettings.json file. Any modifications may potentially break your website. When you save a back-up copy will be made, in case of an emergency.</key>
+    <key alias="yesSave">Yes, Save</key>
+    <key alias="saveFileConfirmation">Are you sure you want to save the configuration file?</key>
+  </area>
+  <area alias="speechBubbles">
+    <key alias="configFileErrorHeader">Configuration file not saved</key>
+    <key alias="configFileErrorText">An error occurred saving the file.</key>
+  </area>
+</language>

@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <ContentTargetFolders>.</ContentTargetFolders>
+        <PackageId></PackageId>
+        <Title>ConfigurationEditor</Title>
+        <Description>Adds a Configuration Editor to the Settings section for Umbraco 9</Description>
+        <Product>ConfigurationEditor</Product>
+        <PackageTags>umbraco plugin package configuration</PackageTags>
+        <Version>2.0.0</Version>
+        <Company>Your IT Group Pty Ltd</Company>
+        <Authors>Robert Foster</Authors>
+        <Copyright>2021 Your IT Group Pty Ltd</Copyright>
+        <PackageIcon>icon.png</PackageIcon>
+        <PackageIconUrl />
+        <RepositoryUrl>https://github.com/YourITGroup/ConfigurationEditor</RepositoryUrl>
+        <PackageReleaseNotes>
+Installing the package adds a Configuration Editor to the Settings section for Umbraco 9 with capability to edit all files in the /config directory plus the root Web.Config file.  
+The root Web.Config file will be backed up with a date-stamped extension on save.</PackageReleaseNotes>
+        <PackageProjectUrl>https://github.com/YourITGroup/ConfigurationEditor</PackageProjectUrl>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Umbraco.Cms.Web.Website" Version="9.0.0-beta003" />
+        <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="9.0.0-beta003" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="App_Plugins\ConfigurationEditor\**\*.*">
+            <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+            <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+        </Content>
+        <None Include="icon.png">
+          <Pack>True</Pack>
+          <PackagePath></PackagePath>
+        </None>
+        <None Include="build\**\*.*">
+            <Pack>True</Pack>
+            <PackagePath>build</PackagePath>
+        </None>
+    </ItemGroup>
+</Project>

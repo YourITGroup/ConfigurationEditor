@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language alias="en" intName="English (US)" localName="English (US)" lcid="" culture="en-US">
+  <creator>
+    <name>Your IT Team</name>
+    <link>https://youritteam.com.au</link>
+  </creator>
+  <area alias="treeHeaders">
+    <key alias="configurationFiles">Configuration Files</key>
+  </area>
+  <area alias="settings">
+    <key alias="configuration">Configuration</key>
+  </area>
+  <area alias="configurationFiles">
+    <key alias="save">Save Configuration File</key>
+    <key alias="webConfigEditing">Warning: You are currently editing the Web.config file. Any modifications may potentially break your website. When you save a back-up copy will be made, in case of an emergency.</key>
+    <key alias="yesSave">Yes, Save</key>
+    <key alias="saveFileConfirmation">Are you sure you want to save the configuration file?</key>
+  </area>
+</language>
