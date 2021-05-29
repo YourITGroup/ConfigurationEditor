@@ -1,0 +1,27 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <PropertyGroup>
+        <ConfigurationEditorContentFilesPath>$(MSBuildThisFileDirectory)..\App_Plugins\ConfigurationEditor\**\*.*</ConfigurationEditorContentFilesPath>
+    </PropertyGroup>
+
+    <Target Name="CopyConfigurationEditorAssets" BeforeTargets="Build">
+        <ItemGroup>
+            <ConfigurationEditorContentFiles Include="$(ConfigurationEditorContentFilesPath)" />
+        </ItemGroup>
+        <Message Text="Copying ConfigurationEditor files: $(ConfigurationEditorContentFilesPath) - #@(ConfigurationEditorContentFiles->Count()) files"  Importance="high" />
+        <Copy
+            SourceFiles="@(ConfigurationEditorContentFiles)"
+            DestinationFiles="@(ConfigurationEditorContentFiles->'$(MSBuildProjectDirectory)\App_Plugins\ConfigurationEditor\%(RecursiveDir)%(Filename)%(Extension)')"
+            SkipUnchangedFiles="true" />
+
+    </Target>
+
+    <Target Name="ClearConfigurationEditorAssets" BeforeTargets="Clean">
+        <ItemGroup>
+            <ConfigurationEditorDir Include="$(MSBuildProjectDirectory)\App_Plugins\ConfigurationEditor\" />
+        </ItemGroup>
+        <Message Text="Clear old ConfigurationEditor data"  Importance="high" />
+        <RemoveDir Directories="@(ConfigurationEditorDir)"  />
+    </Target>
+
+</Project>

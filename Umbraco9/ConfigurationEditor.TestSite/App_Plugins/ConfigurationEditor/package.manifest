@@ -1,0 +1,6 @@
+{
+  "javascript": [
+    "~/App_Plugins/ConfigurationEditor/backOffice/js/edit.controller.js",
+    "~/App_Plugins/ConfigurationEditor/backOffice/js/configurationEditor.resource.js"
+  ]
+}
